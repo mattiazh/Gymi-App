@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synonym-Aufgaben</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div id="startScreen" class="start-screen">
+        <h1>Willkommen beim Quiz!</h1>
+        <p>Wählen Sie einen Aufgabentyp:</p>
+        <button onclick="startQuiz('Synonym Aufgaben')">Synonym Aufgaben</button>
+        <button onclick="startQuiz('Verb Aufgaben')">Verb Aufgaben</button>
+        <button onclick="startQuiz('Adjektiv Aufgaben')">Adjektiv Aufgaben</button>
+        <button onclick="startQuiz('Additons und Subtraktions Aufgaben')">Additons und Subtraktions Aufgaben</button>
+        <button onclick="startQuiz('Text Aufgaben')">Text Aufgaben</button>
+        
+    </div>
+    <div id="quizContainer" class="quiz-container" style="display:none;">
+        <h1 class="quiz-title">Synonym-Aufgaben</h1>
+        
+        <!-- Fortschrittsbalken -->
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%;"></div>
+        </div>
+        
+        <!-- Aktuelle Aufgabennummer -->
+        <p id="taskNumber" class="task-number">1/10</p>
+
+        <div class="timer-container">
+            <svg class="timer-circle" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                <circle r="105" cx="110" cy="110" fill="none" class="timer-background"></circle>
+                <circle class="timer-path" r="105" cx="110" cy="110" fill="none" stroke-dasharray="283"></circle>
+            </svg>
+            <div class="timer-text"></div>
+        </div>
+        
+        <p id="instruction" class="quiz-instruction">Kreuze jeweils nur die Lösung an, die der Bedeutung der fett gedruckten Wörter am besten entspricht. Der Sinn der Aussage muss zum Text passen.</p>
+        <p id="question" class="quiz-question"></p>
+        <div id="options" class="quiz-options">
+            <!-- Optionen für die verschiedenen Aufgabentypen werden dynamisch durch JavaScript eingefügt -->
+        </div>
+        <button onclick="nextQuestion()" class="btn btn-next" style="display: none;">Nächste Frage</button>
+        <button id="correctButton" onclick="checkAnswer()">Korrigieren</button>
+        <button id="showAnswerButton" onclick="showAnswer()">Lösung anzeigen</button>
+        <p id="feedback" class="quiz-feedback"></p>
+        <div id="solution" style="margin-top: 20px;"></div>
+        <div id="noteField" class="drawing-area" style="display: none;">
+        <div id="drawingControls">
+                <h2>Platz für Notitzen</h2>
+                <button onclick="enableDrawing()">Bleistift</button>
+                <button onclick="toggleEraser()">Radiergummi</button>
+                <button onclick="clearCanvas()">Alles löschen</button>
+            </div>
+            <div class="canvas-container">
+                <canvas id="gridCanvas" width="595" height="842"></canvas> <!-- Grid Canvas -->
+                <canvas id="drawingCanvas" width="595" height="842"></canvas> <!-- Drawing Canvas -->
+            </div>  
+        </div>
+    </div>
+    <div id="endScreen" class="end-screen" style="display:none;">
+        <h1>Super, du hast alle Aufgaben beantwortet!</h1>
+        <p>Richtig beantwortete Fragen: <span id="correctAnswers"></span></p>
+        <p>Falsch beantwortete Fragen: <span id="incorrectAnswers"></span></p>
+        <p>Gesamt Genauigkeit: <span id="accuracyRate"></span>%</p>
+        <p>Durchschnittliche Zeit pro Aufgabe: <span id="averageTime"></span></p>
+        <p>Durchschnittliche Anzahl Versuche pro Aufgabe: <span id="averageAttempts"></span></p>
+        <button onclick="restartQuiz()">Zurück zum Startbildschirm</button>
+    </div>
+</body>
+
+</html>
